@@ -1,0 +1,344 @@
+:root {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #1f2937;
+  background: #f3f7fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
+  --bg: #f3f7fb;
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --panel: #ffffff;
+  --panel-alt: #ecf4ff;
+  --stroke: #d8e1f0;
+  --text: #10233d;
+  --muted: #5b6781;
+  --primary: #1f6feb;
+  --primary-strong: #154db7;
+  --secondary: #edf6ff;
+  --danger: #d92d20;
+  --danger-soft: #fff1f2;
+  --success: #0d8a6b;
+  --success-soft: #ebfff7;
+  --shadow: rgba(15, 23, 42, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eef6ff 0%, #f8fbff 30%, #f3f7fb 100%);
+  color: var(--text);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.pageShell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+.pageCard {
+  width: min(100%, 560px);
+  background: var(--card-bg);
+  border: 1px solid rgba(181, 197, 220, 0.7);
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(20, 39, 72, 0.12);
+  padding: clamp(1.2rem, 2vw, 2rem);
+  backdrop-filter: blur(12px);
+}
+
+.pageHeader {
+  margin-bottom: 1.5rem;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: var(--secondary);
+  color: var(--primary-strong);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.pageHeader h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.pageHeader p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formGrid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.fieldLabel {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.inputShell {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #f9fbff;
+  border: 1px solid var(--stroke);
+  border-radius: 14px;
+  padding: 0.15rem 0.8rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inputShell:focus-within {
+  border-color: rgba(31, 111, 235, 0.8);
+  box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.12);
+}
+
+.inputShell.error {
+  border-color: rgba(217, 45, 32, 0.8);
+  background: var(--danger-soft);
+}
+
+.inputShell input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  padding: 0.9rem 0.2rem;
+  font-size: 1rem;
+}
+
+.inputShell input::placeholder {
+  color: #7a89a5;
+}
+
+.inputAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passwordToggle {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passwordToggle:focus-visible,
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 3px solid rgba(31, 111, 235, 0.2);
+  outline-offset: 2px;
+}
+
+.fieldError {
+  color: var(--danger);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.statusBox {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 14px;
+  padding: 0.8rem 0.9rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.statusBox.error {
+  color: var(--danger);
+  background: var(--danger-soft);
+  border: 1px solid rgba(217, 45, 32, 0.18);
+}
+
+.statusBox.success {
+  color: var(--success);
+  background: var(--success-soft);
+  border: 1px solid rgba(13, 138, 107, 0.18);
+}
+
+.authSwitch {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+
+.linkButton {
+  color: var(--primary-strong);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.linkButton:hover {
+  text-decoration: underline;
+}
+
+.primaryButton,
+.secondaryButton {
+  border: none;
+  border-radius: 14px;
+  padding: 0.95rem 1.2rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.primaryButton {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 20px rgba(31, 111, 235, 0.18);
+}
+
+.primaryButton:hover:not(:disabled),
+.secondaryButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.primaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--secondary);
+  color: var(--primary-strong);
+}
+
+.secondaryButton.small {
+  padding: 0.7rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.loadingShell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: rgba(240, 244, 250, 0.8);
+}
+
+.loadingCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.5rem 2rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+
+.loadingIcon {
+  width: 38px;
+  height: 38px;
+  color: var(--primary);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .pageShell {
+    padding: 18px 12px;
+  }
+
+  .pageCard {
+    border-radius: 18px;
+    padding: 1rem;
+  }
+
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .secondaryButton.small {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function validProfile(data) {
+      return data.keys().hasAll([
+          'uid',
+          'name',
+          'email',
+          'mobileNumber',
+          'username',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'uid',
+          'name',
+          'email',
+          'mobileNumber',
+          'username',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.uid is string
+        && data.name is string
+        && data.email is string
+        && data.mobileNumber is string
+        && data.username is string
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    match /profiles/{userId} {
+      allow get: if isOwner(userId);
+      allow list, delete: if false;
+
+      allow create: if isOwner(userId)
+        && validProfile(request.resource.data)
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+
+      allow update: if isOwner(userId)
+        && validProfile(request.resource.data)
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time;
+    }
+  }
+}
